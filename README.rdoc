@@ -4,7 +4,7 @@
 2. Install gems using "bundle install"
 3. Run "rake db:migrate"
 4. Start the server by giving command "rails s"
-5. Open "http://localhost:<portnumber>"
+5. Open "http://localhost:3000"
 6. Create database with different events in local host
 7. use links in the application to search for the queries
 8. Basic validations can be done.
