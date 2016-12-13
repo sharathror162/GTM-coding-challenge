@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+<%= form_tag("/display_result", method: "get") do %>
+  <%= label_tag(:user_org, "Search for org:") %>
+  <%= text_field_tag(:user_org) %>
+
+  <%= label_tag(:last_num, "Last number of events to be searched:") %>
+  <%= text_field_tag(:last_num) %> <br>
+
+  <%= submit_tag("Search") %>
+<% end %>
+
+<br>
+
+
+<%= link_to 'New Event', new_event_path %> <br>
+<%= link_to 'Find by org', find_by_org_path %><br>
+<%= link_to 'Find by host and org', find_by_host_org_path %><br>
+<%= link_to 'Home', events_path %>
