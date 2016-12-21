@@ -53,7 +53,7 @@ class EventsController < ApplicationController
 
   def display_result
     org_given = params[:user_org]
-    num_of_events = params[:last_num]
+    num_of_events = params[:last_num] || 10
     host_given = params[:host_name]
 
     if host_given && org_given
@@ -66,11 +66,19 @@ class EventsController < ApplicationController
   end
 
   def display_host
-    num_of_events = params[:last_num]
-    host_given = params[:host_name]
-    res = Event.all.where(hostname: host_given)
-    @result = res.last(num_of_events) if num_of_events.length>0
-    @result.reverse!
+      num_of_events = "10" if params[:last_num].blank?
+      host_given = params[:host_name]
+      if host_given.blank?
+        flash.now[:notice] = 'Host name cannot be empty.'
+        render :find_by_host
+      elsif (/\A\w+@+\w+\.+com|edu|gov\z/).match(host_given).nil?
+        flash.now[:notice] = 'Invalid Host name.'
+        render :find_by_host
+      else
+        res = Event.all.where(hostname: host_given)
+        @result = res.last(num_of_events) if num_of_events.length>0
+        @result.reverse!
+       end
   end
 
   ##
