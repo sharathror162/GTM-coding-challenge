@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'find_by_org' => 'events#find_by_org'
   get 'find_by_host_org' => 'events#find_by_host_org'
   get 'display_result' => 'events#display_result'
+  get 'find_by_host' => 'events#find_by_host'
+  get 'display_host' => 'events#display_host'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

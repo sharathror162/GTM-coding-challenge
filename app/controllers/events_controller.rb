@@ -44,6 +44,10 @@ class EventsController < ApplicationController
 
   end
 
+  def find_by_host
+
+  end
+
   def find_by_host_org
   end
 
@@ -52,11 +56,19 @@ class EventsController < ApplicationController
     num_of_events = params[:last_num]
     host_given = params[:host_name]
 
-    if host_given
+    if host_given && org_given
       res = Event.all.where("org = ? AND hostname = ?", org_given, host_given)
-    else
+    elsif org_given
       res = Event.all.where(org: org_given)
     end
+    @result = res.last(num_of_events) if num_of_events.length>0
+    @result.reverse!
+  end
+
+  def display_host
+    num_of_events = params[:last_num]
+    host_given = params[:host_name]
+    res = Event.all.where(hostname: host_given)
     @result = res.last(num_of_events) if num_of_events.length>0
     @result.reverse!
   end

@@ -1,24 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Events</h1>
+<h1>Listing Host "<%= @result[0].hostname %>" data</h1>
 
 <table>
   <thead>
-    <tr>
-      <th>Hostname</th>
-      <th>Org</th>
-      <th>Created</th>
-    </tr>
+  <tr>
+    <th>Org</th>
+    <th>Created</th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @events.each do |event| %>
+  <% @result.each do |event| %>
       <tr>
-        <td><%= event.hostname %></td>
         <td><%= event.org %></td>
         <td><%= event.created %></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
@@ -28,4 +26,5 @@
 <%= link_to 'Find by org', find_by_org_path %><br>
 <%= link_to 'Find by host and org', find_by_host_org_path %><br>
 <%= link_to 'Find by host', find_by_host_path %><br>
+<%= link_to 'Home', events_path %>
 
